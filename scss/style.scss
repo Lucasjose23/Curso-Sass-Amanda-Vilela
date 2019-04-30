@@ -1,0 +1,230 @@
+/*imports partials usa underline pq o sass identifica */
+@import 'teste.scss';
+@import 'partials/button.scss';
+/*seletores*/
+nav{
+    width: 100%;
+  
+    ul{
+        list-style: none;
+        padding: 20px 0;
+    }
+    li {
+        color: red;
+        margin: 0 20px;
+    }
+
+}
+/*propriedades*/
+nav {
+    font: {
+        family: "Times New Roman", Times,serif;
+        style:italic;
+        size: 30px;
+        weight:bold;
+    }
+}
+/*pseudo elementos*/
+p {
+    color: beige;
+    &:hover{
+        color:bisque;
+    }
+}
+/*variaveis*/
+$width:100%;
+$font-size: 1.2rem;
+$background:#962acd;
+
+table {
+    background: $background;
+    font-size: $font-size;
+}
+/*variavel boleanas nao pode ser utilizadas diretamente no css*/
+$color-light:false;
+/*variaveis lista tbm nao utilizadas no css (na margin pode)*/
+$animal: puma,violentomsaoasfd,asdasd;
+/*maps(são tipo objetos)*/
+$social:(
+    face:#666,
+    insta:#777
+);
+
+/*interpolação, da pra interpolar com seletor e propriedade*/
+$name:destaque;
+$attr:border;
+p.#{$name}{
+    #{$attr}-color:blue;
+}
+p{
+    $font-size:12px;
+    $line-height:30px;
+    font: #{$font-size}/#{$line-height};
+
+}
+/*extend pode chamar configuraçoes de outras classes para uma nova tag ou classe*/
+.msg{
+    border:1px solid;
+  }
+  .msg-error{
+    @extend .msg;
+    border-color: white;
+  }
+
+ button:hover{
+     text-decoration: underline;
+ } 
+ .hoverlink{
+     @extend button:hover;
+     color: black;
+ }
+/*operadores(para adicionar as unidades tem que ser compativeis)*/
+h1{
+    font-size:5px+2;/*essa é a maneira certa*/
+}
+h1{
+    font-size:5px - 2;
+}
+/*divisaao usada junto com variavel ou funçaõ ou entre parente*/
+
+p{
+    $tamanho:100px;
+    width: $tamanho/2;
+    height: (500px/2);
+}
+/*operaçao por cor(soma por itens hexa) rgba tem que ter o mesmo valor de alpha*/
+h4{
+    color:#010103+#040506;
+}
+p{
+    cursor: e + -resize;
+}
+p{
+    content: "eu tenho #{2+10} moedas"
+}
+
+/*mixins definir estilos que podem ser reutilizados*/
+@mixin border-radius($border) {
+    border-radius: $border;
+    -wbkit-border-radius:$border;
+    
+}
+.box{
+    @include border-radius(20px);
+}
+@mixin titulo($size,$color:blue) {
+    color:$color;
+    font-size: $size;
+    
+}
+h5{
+    @include titulo(14px);
+}
+/*mizin como lista de parametros*/
+@mixin pad($values...) {
+    padding: $values;
+    
+}
+label{
+    @include pad(10px 20px);
+}
+
+/*funçoes predefinidas,existem varias vc pode encotrar pesquisando no site*/
+$color:blue;
+$amount:0;
+$texto:"teste";
+section div {
+    background: lighten($color, $amount);
+    background: darken($color, $amount);
+    font-family: to-upper-case($texto);
+
+}
+/*criando a propria função sempre retorna algo*/
+@function calc-fluid($target,$container){
+    @return ($target/$container)*100;
+}
+.testefunc{
+    width: calc-fluid(400,1000);
+}
+
+/*placehouders semelhante a classes, para blocos estaticos  */
+%center{
+    display: block;
+    margin: 0 auto;
+}
+div {
+    @extend %center;
+}
+p {
+    @extend %center;
+}
+/*condicionais */
+$template: blue;
+header{
+    @if ($template==dark) {
+        color:#000;
+
+        
+    }@else if ($template==blue){
+        color:blue;
+    } @else{
+        color: white;
+    }
+}
+
+/*interaçoes*/
+@for $i from 0 to 3 {
+    .item-#{$i} {width: 2em*$i;}
+    
+}
+/*each sempre vai trabalhar com listas |aqui pode ser um array*/
+@each $animal in puma,sea,eagre,salamander {
+    .#{$animal}-icon{
+        background-image: url('#{$animal}.png');
+    }
+    
+}
+$i:6;
+/*while*/
+@while $i>0 {
+    .item-#{$i}{
+        height: 2em* $i;
+    }
+    $i: $i - 1;
+    
+}
+/*media querie*/
+$tablet-width:752px;
+$desktop-width:1024;
+
+@mixin table-mobile {
+    @media  (min-width:#{$tablet-width}) {
+        @content;
+    }
+    
+}
+@mixin table {
+    @media  (min-width:#{$desktop-width}) {
+        @content;/*pode passar o codico*/
+    }
+    
+}
+header{
+    padding: 3px;
+    @include table(){
+        padding-bottom: 3px;
+    }
+}
+/*output style */
+/*coloca no comando*/
+/* node-sass --output-style nested  --watch scss/style.scss css/style.css*/
+/* node-sass --output-style expanded  --watch scss/style.scss css/style.css*/
+/* node-sass --output-style compact  --watch scss/style.scss css/style.css*/
+/* node-sass --output-style compressed  --watch scss/style.scss css/style.css*/
+
+
+
+
+
+
+

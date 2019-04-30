@@ -1,0 +1,112 @@
+@charset "UTF-8";
+/*imports partials usa underline pq o sass identifica */
+/*seletores*/
+nav { width: 100%; }
+
+nav ul { list-style: none; padding: 20px 0; }
+
+nav li { color: red; margin: 0 20px; }
+
+/*propriedades*/
+nav { font-family: "Times New Roman", Times,serif; font-style: italic; font-size: 30px; font-weight: bold; }
+
+/*pseudo elementos*/
+p { color: beige; }
+
+p:hover { color: bisque; }
+
+/*variaveis*/
+table { background: #962acd; font-size: 1.2rem; }
+
+/*variavel boleanas nao pode ser utilizadas diretamente no css*/
+/*variaveis lista tbm nao utilizadas no css (na margin pode)*/
+/*maps(são tipo objetos)*/
+/*interpolação, da pra interpolar com seletor e propriedade*/
+p.destaque { border-color: blue; }
+
+p { font: 12px/30px; }
+
+/*extend pode chamar configuraçoes de outras classes para uma nova tag ou classe*/
+.msg, .msg-error { border: 1px solid; }
+
+.msg-error { border-color: white; }
+
+button:hover, .hoverlink { text-decoration: underline; }
+
+.hoverlink { color: black; }
+
+/*operadores(para adicionar as unidades tem que ser compativeis)*/
+h1 { font-size: 7px; /*essa é a maneira certa*/ }
+
+h1 { font-size: 3px; }
+
+/*divisaao usada junto com variavel ou funçaõ ou entre parente*/
+p { width: 50px; height: 250px; }
+
+/*operaçao por cor(soma por itens hexa) rgba tem que ter o mesmo valor de alpha*/
+h4 { color: #050609; }
+
+p { cursor: e-resize; }
+
+p { content: "eu tenho 12 moedas"; }
+
+/*mixins definir estilos que podem ser reutilizados*/
+.box { border-radius: 20px; -wbkit-border-radius: 20px; }
+
+h5 { color: blue; font-size: 14px; }
+
+/*mizin como lista de parametros*/
+label { padding: 10px 20px; }
+
+/*funçoes predefinidas,existem varias vc pode encotrar pesquisando no site*/
+section div { background: blue; background: blue; font-family: "TESTE"; }
+
+/*criando a propria função sempre retorna algo*/
+.testefunc { width: 40; }
+
+/*placehouders semelhante a classes, para blocos estaticos  */
+div, p { display: block; margin: 0 auto; }
+
+/*condicionais */
+header { color: blue; }
+
+/*interaçoes*/
+.item-0 { width: 0em; }
+
+.item-1 { width: 2em; }
+
+.item-2 { width: 4em; }
+
+/*each sempre vai trabalhar com listas |aqui pode ser um array*/
+.puma-icon { background-image: url("puma.png"); }
+
+.sea-icon { background-image: url("sea.png"); }
+
+.eagre-icon { background-image: url("eagre.png"); }
+
+.salamander-icon { background-image: url("salamander.png"); }
+
+/*while*/
+.item-6 { height: 12em; }
+
+.item-5 { height: 10em; }
+
+.item-4 { height: 8em; }
+
+.item-3 { height: 6em; }
+
+.item-2 { height: 4em; }
+
+.item-1 { height: 2em; }
+
+/*media querie*/
+header { padding: 3px; }
+
+@media (min-width: 1024) { header { padding-bottom: 3px; /*pode passar o codico*/ } }
+
+/*output style */
+/*coloca no comando*/
+/* node-sass --output-style nested  --watch scss/style.scss css/style.css*/
+/* node-sass --output-style expanded  --watch scss/style.scss css/style.css*/
+/* node-sass --output-style compact  --watch scss/style.scss css/style.css*/
+/* node-sass --output-style compressed  --watch scss/style.scss css/style.css*/
